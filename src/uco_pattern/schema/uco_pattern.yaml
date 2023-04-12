@@ -1,0 +1,90 @@
+---
+id: https://w3id.org/lmodel/ucolink-pattern
+name: ucolink-pattern
+title: UCO Pattern
+description: >-
+license: https://www.apache.org/licenses/LICENSE-2.0
+
+version: 1.1.0  # sync with primary git repo release tag
+
+## ------------
+##
+## PREFIXES
+## ------------
+# CURIE namespaces (prefixes/base URI's) mappings of prefixes used in the body of
+# the UCOLink Model specification are resolved using a specific precedence order,
+# for use in the generation of the UCOLink Model context.jsonld mappings to
+# namespaces. Any prefixes encountered in the UCOLink Model but not resolved by
+# the following precedence sources, are anonymously declared by linkml as
+# http://example.org/UNKNOWN/ rooted base URI's which should ideally be repaired
+# in one of the precedence lists.
+#
+# 1. The following 'prefixes:' delimited list has first precedence in resolution.
+
+prefixes:
+  lm_core: 'https://w3id.org/lmodel/core/'
+  linkml: 'https://w3id.org/linkml/'
+  sumo: 'https://w3id.org/sumo/kb/'
+
+  pattern: 'https://w3id.org/lmodel/uco-pattern/'
+  schema_uco_core: 'https://w3id.org/lmodel/uco-core/schema/'
+
+default_prefix: pattern
+default_range: string
+
+## ------------
+## ENUMS
+## ------------
+enums: {}
+
+## ------------
+## SUBSETS
+## ------------
+subsets: {}
+
+## ------------
+## TYPES
+## ------------
+imports:
+  - linkml:types
+  - schema_uco_core:uco_core
+
+types: {}
+
+## ------------
+## SLOTS
+## ------------
+slots:
+
+  patternExpression:
+    description: >-
+      An explicit logical pattern expression.
+
+## ------------
+## CLASSES
+## ------------
+classes:
+
+  LogicalPattern:
+    is_a: Pattern
+    description: >-
+      A logical pattern is a grouping of characteristics unique to an informational pattern expressed via a structured pattern expression following the rules of logic.
+    slots:
+      - patternExpression
+    slot_usage:
+      patternExpression:
+        maximum_cardinality: 1
+
+  Pattern:
+    is_a: UcoObject
+    description: >-
+      A pattern is a combination of properties, acts, tendencies, etc., forming a consistent or characteristic arrangement.
+    exact_mappings:
+      - wikidata:Q2083958
+
+  PatternExpression:
+    is_a: UcoInherentCharacterizationThing
+    description: >-
+      A pattern expression is a grouping of characteristics unique to an explicit logical expression defining a pattern (e.g., regular expression, SQL Select expression, etc.).
+
+...
